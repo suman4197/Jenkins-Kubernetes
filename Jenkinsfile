@@ -16,7 +16,21 @@ pipeline {
               }
           }
       }
+      stage ('Building a Docker Image') {
+          steps {
+              sh 'docker build -t suman4197/custom-image:1.0 .'
+          }
+      }
+      stage ('login and Push image to Hub') {
+          steps {
+           withCredentials([string(credentialsId: 'Docker_Hub_Credentials', variable: 'Docker_Hub_Credentials')]) {
+            sh 'docker login -u suman4197 -p ${Docker_Hub_Credentials}'   
+            } 
+            sh 'docker push suman4197/custom-image:1.0'
+            echo "pushing the image to the hub is successful"
+          }
+        }
+      }
    }
-}
             
             
