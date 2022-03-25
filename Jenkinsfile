@@ -8,9 +8,13 @@ pipeline {
          }
       }
       stage ('building a source code') {
-        def mavenHome = tool name: 'maven-3.8.5', type: 'maven'
-        def mavenCMD = "${mavenHome}/bin/mvn"
-        sh "${mavenCMD} clean install"
+          steps {
+              script {
+            def mavenHome = tool name: "maven-3.8.5", type: "maven"
+            def mavenCMD = "${mavenHome}/bin/mvn"
+            sh "${mavenCMD} clean install"
+              }
+          }
       }
    }
 }
