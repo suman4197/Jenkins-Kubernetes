@@ -30,6 +30,11 @@ pipeline {
             echo "pushing the image to the hub is successful"
           }
         }
+      stage ('deploying to the K8s') {
+          steps {
+              kubernetesDeploy( configs: 'Kubernetes.yml', kubeconfigId: 'Kubernetes_Credentials', enableConfigSubstitution: true )
+            }
+        }
       }
    }
             
