@@ -7,5 +7,5 @@ ADD https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.76/bin/apache-tomcat-8.5.76.ta
 RUN tar -xzf apache-tomcat-8.5.76.tar.gz
 RUN mv apache-tomcat-8.5.76 tomcat
 WORKDIR /tomcat/webapps/
-COPY ./Calendar.war /tomcat/webapps
+COPY ./hello-world-war-1.0.0.war /tomcat/webapps
 CMD ["/tomcat/bin/catalina.sh","run"]
